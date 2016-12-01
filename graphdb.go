@@ -139,14 +139,15 @@ func (db *GraphDB) PrintGraph2DOT() {
 
 	for _, edge := range edges {
 		if edge.Dir == FORWARD {
-			fmt.Printf("  %s -> %s;\n", byte2string(edge.From), byte2string(edge.To))
+			fmt.Printf("  %s -> %s;\n", Byte2string(edge.From), Byte2string(edge.To))
 		}
 	}
 
 	fmt.Println("}")
 }
 
-func byte2string(val []byte) string {
+// Byte2string convert byte array to string
+func Byte2string(val []byte) string {
 	var str string
 
 	for _, b := range val {

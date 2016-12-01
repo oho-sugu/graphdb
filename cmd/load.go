@@ -1,19 +1,11 @@
 package main
 
 import (
-	"encoding/binary"
 	"encoding/csv"
 	"io"
 	"os"
-	"strconv"
 
 	"github.com/oho-sugu/graphdb"
-)
-
-// Node and Edge type definition
-const (
-	NEURON     int16 = 1
-	CONNECTION int16 = 1
 )
 
 func main() {
@@ -68,11 +60,4 @@ func inputFromTSV(db *graphdb.GraphDB, nodefilename string, nodetype int16, edge
 		}
 		db.AddEdge(no2ID(record[0]), no2ID(record[1]), edgetype, []byte(record[2]+","+record[3]))
 	}
-}
-
-func no2ID(no string) []byte {
-	noint, _ := strconv.Atoi(no)
-	id := make([]byte, 4)
-	binary.LittleEndian.PutUint32(id, uint32(noint))
-	return id
 }
